@@ -13,15 +13,16 @@ object PerformanceTester {
     lazy val logger = LogManager.getLogger("SparkRootPerformanceTester")
 
     // get the opts
-    val maxNumExecs = args(0).toInt
-    val numCores = args(1).toInt
-    val numTrials = args(2).toInt
-    val pathToOutput = args(3);
-    val inputFolder = args(4);
+    val minNumExecs = args(0).toInt
+    val maxNumExecs = args(1).toInt
+    val numCores = args(2).toInt
+    val numTrials = args(3).toInt
+    val pathToOutput = args(4);
+    val inputFolder = args(5);
     val treeName = 
-      if (args.size==6) args(5) else null
+      if (args.size==7) args(6) else null
 
-    var numExecs = 1;
+    var numExecs = minNumExecs;
 
     while (numExecs <= maxNumExecs) {
       val spark = SparkSession.builder()
